@@ -358,10 +358,10 @@ class IboxproFlutterHandlerImpl: MethodCallHandler {
       handler.methodChannel.invokeMethod("onPaymentStart", arguments)
     }
 
-    override fun onReaderEvent(event: PaymentController.ReaderEvent) {
+    override fun onReaderEvent(event: PaymentController.ReaderEvent?, p1: MutableMap<String, String>?) {
       val arguments = HashMap<String, Any>()
 
-      arguments["nativeReaderEventType"] = event.ordinal
+      arguments["nativeReaderEventType"] = event!!.ordinal
 
       when(event) {
         PaymentController.ReaderEvent.DISCONNECTED,
@@ -389,6 +389,8 @@ class IboxproFlutterHandlerImpl: MethodCallHandler {
 
       handler.methodChannel.invokeMethod("onPaymentError", arguments)
     }
+
+
 
     override fun onSelectInputType(p0: MutableList<PaymentController.PaymentInputType>?): PaymentController.PaymentInputType {
       return PaymentController.PaymentInputType.OTHER

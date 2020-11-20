@@ -18,6 +18,9 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
+        flatDir{
+            dirs 'libs'
+        }
     }
 }
 
@@ -46,5 +49,8 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation(name:'ibox.pro.sdk.external', ext:'aar')
+
     implementation fileTree(include: ['*.aar'], dir: 'libs')
+    implementation 'androidx.annotation:annotation:1.1.0'
 }
